@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.27.xsd">
+
+    <changeSet id="create-users" author="you">
+        <createTable tableName="users">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="login" type="VARCHAR(20)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(64)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-clients" author="you">
+        <createTable tableName="clients">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="client_id" type="VARCHAR(12)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="middle_name" type="VARCHAR(20)"/>
+            <column name="last_name" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_of_birth" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="document_type" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="document_id" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="document_prefix" type="VARCHAR(10)"/>
+            <column name="document_suffix" type="VARCHAR(10)"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="clients"
+                                 baseColumnNames="user_id"
+                                 constraintName="fk_clients_user"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="create-products" author="you">
+        <createTable tableName="products">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_key" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_date" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_id" type="VARCHAR(30)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-client-products" author="you">
+        <createTable tableName="client_products">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="client_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="open_date" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="close_date" type="DATE"/>
+            <column name="status" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="client_products"
+                                 baseColumnNames="client_id"
+                                 constraintName="fk_client_products_client"
+                                 referencedTableName="clients"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="client_products"
+                                 baseColumnNames="product_id"
+                                 constraintName="fk_client_products_product"
+                                 referencedTableName="products"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="create-blacklist-registry" author="you">
+        <createTable tableName="blacklist_registry">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="document_type" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="document_id" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="blacklisted_at" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reason" type="VARCHAR(128)"/>
+            <column name="blacklist_expiration_date" type="TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

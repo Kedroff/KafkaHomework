@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.27.xsd">
+
+    <changeSet id="insert-test-product-registry" author="you">
+        <insert tableName="product_registry">
+            <column name="client_id" valueNumeric="1"/>
+            <column name="account_id" valueNumeric="1"/>
+            <column name="product_id" valueNumeric="1"/>
+            <column name="interest_rate" valueNumeric="5.00"/>
+            <column name="open_date" valueDate="2025-01-15"/>
+        </insert>
+
+        <insert tableName="product_registry">
+            <column name="client_id" valueNumeric="2"/>
+            <column name="account_id" valueNumeric="2"/>
+            <column name="product_id" valueNumeric="2"/>
+            <column name="interest_rate" valueNumeric="7.50"/>
+            <column name="open_date" valueDate="2024-12-01"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert-test-payment-registry" author="you">
+        <insert tableName="payment_registry">
+            <column name="product_registry_id" valueNumeric="1"/>
+            <column name="payment_date" valueDate="2025-02-15"/>
+            <column name="amount" valueNumeric="500.00"/>
+            <column name="interest_rate_amount" valueNumeric="25.00"/>
+            <column name="debt_amount" valueNumeric="1500.00"/>
+            <column name="expired" valueBoolean="false"/>
+            <column name="payment_expiration_date" valueDate="2025-03-15"/>
+        </insert>
+
+        <insert tableName="payment_registry">
+            <column name="product_registry_id" valueNumeric="2"/>
+            <column name="payment_date" valueDate="2025-01-10"/>
+            <column name="amount" valueNumeric="750.00"/>
+            <column name="interest_rate_amount" valueNumeric="50.00"/>
+            <column name="debt_amount" valueNumeric="2500.00"/>
+            <column name="expired" valueBoolean="true"/>
+            <column name="payment_expiration_date" valueDate="2025-01-30"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

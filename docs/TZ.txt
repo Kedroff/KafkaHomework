@@ -1,0 +1,171 @@
+0. Во всех таблицах и МС первичные ключи типа Long.
+
+1. Использовать миграции liquibase или flyway
+
+2. Spring Boot 3
+
+3. Java 21
+
+4. Можно использовать postgreSQL, можно использовать in-memory DB с готовым набором данных в проекте
+
+5. Способ генерации данных на ваше усмотрение
+
+=== Сервис 1 "Client Processing":
+
+Сущность User:
+
+- id
+
+- login
+
+- password
+
+- email
+
+Сущность Client:
+
+- id
+
+- clientId (формат clientId: XXFFNNNNNNNN, где XX - номер региона, FF - номер подразделения банка, N - порядковый. Например, 770100000001, 770200000023)
+
+- userId
+
+- firstName
+
+- middleName
+
+- lastName
+
+- dateOfBirth
+
+- documentType (PASSPORT, INT_PASSPORT, BIRTH_CERT)
+
+- documentId
+
+- documentPrefix
+
+- documentSuffix
+
+Сущность Product:
+
+- id
+
+- name
+
+- key (DC, CC, AC, IPO, PC, PENS, NS, INS, BS)
+
+- createDate
+
+- productId (key + id)
+
+Сущность ClientProduct:
+
+- id
+
+- clientId
+
+- productId
+
+- openDate
+
+- closeDate
+
+- status (ACTIVE, CLOSED, BLOCKED, ARRESTED)
+
+=== Сервис 2 "Account Processing" (Обслуживание DC, CC, NS, PENS):
+
+Сущность Account:
+
+- id
+
+- clientId
+
+- productId
+
+- balance
+
+- interestRate
+
+- isRecalc (признак, является ли баланс пересчитываемым автоматически)
+
+- cardExist
+
+- status
+
+Сущность Card:
+
+- id
+
+- accountId
+
+- cardId
+
+- paymentSystem
+
+- status
+
+Сущность Payment:
+
+- id
+
+- accountId
+
+- paymentDate
+
+- amount
+
+- isCredit
+
+- payedAt
+
+- type
+
+Сущность Transaction:
+
+- id
+
+- accountId
+
+- cardId
+
+- type
+
+- amount
+
+- status (ALLOWED, PROCESSING, COMPLETE, BLOCKED, CANCELLED)
+
+- timestamp
+
+=== Сервис 3 "Credit Processing" (Обслуживание IPO, PC, AC):
+
+Сущность ProductRegistry:
+
+- id
+
+- clientId
+
+- accountId
+
+- productId
+
+- interestRate
+
+- openDate
+
+Сущность PaymentRegistry:
+
+- id
+
+- productRegistryId
+
+- paymendDate
+
+- amount
+
+- interestRateAmount
+
+- debtAmount
+
+- expired (признак)
+
+- paymentExpirationDate

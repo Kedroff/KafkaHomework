@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AmplicodeJpaIdeaProjectConfig" snapshotDbType="POSTGRES">
+    <option name="liquibaseDirectory" value="org/example/accountprocessing/model" />
+    <option name="defaultUnitInitialized" value="true" />
+    <option name="renamerInitialized" value="true" />
+    <option name="sourceDbValue" value="1ca9a5c5-4300-4740-95a0-758214274d55" />
+    <option name="sourceModelValue" value="Default" />
+    <option name="targetDbValue" value="8879beb6-268b-4cfc-b91a-0aa9daacfa06" />
+    <option name="snapshotDbValue" value="1ca9a5c5-4300-4740-95a0-758214274d55" />
+    <option name="snapshotModelValue" value="Default" />
+    <option name="newEntityIdStrategy" />
+    <option name="includeToChangelogDirectory" value="credit-processing/src/main/resources/db/changelog/db.changelog-master.yaml" />
+  </component>
+</project>

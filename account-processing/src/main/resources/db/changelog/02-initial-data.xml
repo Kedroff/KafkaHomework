@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.27.xsd">
+
+    <changeSet id="insert-test-accounts" author="you">
+        <insert tableName="accounts">
+            <column name="client_id" valueNumeric="1"/>
+            <column name="product_id" valueNumeric="1"/>
+            <column name="balance" valueNumeric="1500.00"/>
+            <column name="interest_rate" valueNumeric="5.00"/>
+            <column name="is_recalc" valueBoolean="true"/>
+            <column name="card_exist" valueBoolean="false"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+
+        <insert tableName="accounts">
+            <column name="client_id" valueNumeric="2"/>
+            <column name="product_id" valueNumeric="2"/>
+            <column name="balance" valueNumeric="9999.99"/>
+            <column name="interest_rate" valueNumeric="3.50"/>
+            <column name="is_recalc" valueBoolean="false"/>
+            <column name="card_exist" valueBoolean="true"/>
+            <column name="status" value="BLOCKED"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert-test-cards" author="you">
+        <insert tableName="cards">
+            <column name="account_id" valueNumeric="1"/>
+            <column name="card_id" value="1111-2222-3333-4444"/>
+            <column name="payment_system" value="VISA"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+
+        <insert tableName="cards">
+            <column name="account_id" valueNumeric="2"/>
+            <column name="card_id" value="5555-6666-7777-8888"/>
+            <column name="payment_system" value="MASTERCARD"/>
+            <column name="status" value="BLOCKED"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert-test-payments" author="you">
+        <insert tableName="payments">
+            <column name="account_id" valueNumeric="1"/>
+            <column name="payment_date" valueDate="2025-09-20"/>
+            <column name="amount" valueNumeric="500.00"/>
+            <column name="is_credit" valueBoolean="true"/>
+            <column name="payed_at" valueDate="2025-09-20T10:15:00"/>
+            <column name="type" value="DEPOSIT"/>
+        </insert>
+
+        <insert tableName="payments">
+            <column name="account_id" valueNumeric="2"/>
+            <column name="payment_date" valueDate="2025-09-21"/>
+            <column name="amount" valueNumeric="1000.00"/>
+            <column name="is_credit" valueBoolean="false"/>
+            <column name="payed_at" valueDate="2025-09-21T12:00:00"/>
+            <column name="type" value="WITHDRAWAL"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert-test-transactions" author="you">
+        <insert tableName="transactions">
+            <column name="account_id" valueNumeric="1"/>
+            <column name="card_id" valueNumeric="1"/>
+            <column name="type" value="TRANSFER"/>
+            <column name="amount" valueNumeric="100.50"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="timestamp" valueDate="2025-09-20T09:30:00"/>
+        </insert>
+
+        <insert tableName="transactions">
+            <column name="account_id" valueNumeric="2"/>
+            <column name="card_id" valueNumeric="2"/>
+            <column name="type" value="DEPOSIT"/>
+            <column name="amount" valueNumeric="50.00"/>
+            <column name="status" value="OPENED"/>
+            <column name="timestamp" valueDate="2025-09-21T11:00:00"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
