@@ -4,7 +4,6 @@ import enums.accountProcessing.CardPaymentSystem;
 import enums.accountProcessing.CardStatus;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Getter
 @Setter
@@ -13,7 +12,11 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Card extends AbstractPersistable<Long> {
+public class Card {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "account_id", nullable = false)
     private Long accountId;
