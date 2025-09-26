@@ -3,7 +3,6 @@ package org.example.accountprocessing.model;
 import enums.accountProcessing.PaymentType;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -16,7 +15,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Payment extends AbstractPersistable<Long> {
+public class Payment {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "account_id", nullable = false)
     private Long accountId;

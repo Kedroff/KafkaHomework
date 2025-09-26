@@ -3,3 +3,5 @@ databaseChangeLog:
       file: db/changelog/01-initial.xml
   - include:
       file: db/changelog/02-initial-data.xml
+  - include:
+      file: db/changelog/03-client-number-seq.xml
