@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/clientdb
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/clientdb}
     username: postgres
     password: password
   liquibase:
@@ -8,3 +8,35 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    org.apache.kafka: INFO
+    org.hibernate.SQL: INFO
+
+t1:
+  kafka:
+    bootstrap:
+      server: ${KAFKA_SERVER:localhost:9092}
+    consumer:
+      group-id: client-processing
+      max.poll.records: 10
+      session-timeout: 10000
+      heartbeat.interval: 3000
+    producer:
+      enable: true
+    topic:
+      client_products: client_products
+      client_credit_products: client_credit_products
+      client_cards: client_cards
+    listener:
+      poll-timeout: 1000
