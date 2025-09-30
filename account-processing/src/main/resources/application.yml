@@ -22,3 +22,7 @@ t1:
       client_products: client_products
       client_cards: client_cards
       client_transactions: client_transactions
+      client_payments: client_payments
+  transaction:
+    max-per-card: 10
+    time-window-minutes: 60
