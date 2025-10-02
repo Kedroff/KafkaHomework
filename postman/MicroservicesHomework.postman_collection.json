@@ -1,0 +1,57 @@
+{
+  "info": {
+    "name": "MicroservicesHomework",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Clients - Register",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "url": { "raw": "{{ms1}}/clients/register", "host": ["{{ms1}}"], "path": ["clients","register"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"login\": \"EgorChasov99\",\n  \"password\": \"Chasov421421412\",\n  \"email\": \"egorchasov2321@gmail.com\",\n  \"firstName\": \"Egor\",\n  \"middleName\": \"E\",\n  \"lastName\": \"Chasov\",\n  \"dateOfBirth\": \"1990-01-01\",\n  \"documentType\": \"PASSPORT\",\n  \"documentId\": \"1234567890\",\n  \"documentPrefix\": \"AA\",\n  \"documentSuffix\": \"BB\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Products - Create",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "url": { "raw": "{{ms1}}/products", "host": ["{{ms1}}"], "path": ["products"] },
+        "body": { "mode": "raw", "raw": "{\n  \"name\": \"Debit Card\",\n  \"key\": \"DC\",\n  \"createDate\": \"2025-01-15\"\n}" }
+      }
+    },
+    {
+      "name": "ClientProducts - Create (Deposit/Card)",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "url": { "raw": "{{ms1}}/client-products", "host": ["{{ms1}}"], "path": ["client-products"] },
+        "body": { "mode": "raw", "raw": "{\n  \"clientId\": 1,\n  \"productId\": 1,\n  \"openDate\": \"2025-01-20\",\n  \"status\": \"ACTIVE\"\n}" }
+      }
+    },
+    {
+      "name": "ClientProducts - Create (Credit)",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "url": { "raw": "{{ms1}}/client-products", "host": ["{{ms1}}"], "path": ["client-products"] },
+        "body": { "mode": "raw", "raw": "{\n  \"clientId\": 1,\n  \"productId\": 2,\n  \"openDate\": \"2025-02-01\",\n  \"status\": \"ACTIVE\"\n}" }
+      }
+    },
+    {
+      "name": "Cards - Create",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "url": { "raw": "{{ms1}}/cards", "host": ["{{ms1}}"], "path": ["cards"] },
+        "body": { "mode": "raw", "raw": "{\n  \"accountId\": 1,\n  \"cardId\": \"4111-1111-1235-1111\",\n  \"paymentSystem\": \"VISA\",\n  \"status\": \"ACTIVE\"\n}" }
+      }
+    }
+  ]
+}
+

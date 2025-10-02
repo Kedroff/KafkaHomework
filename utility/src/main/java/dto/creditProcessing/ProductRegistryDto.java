@@ -34,4 +34,9 @@ public class ProductRegistryDto {
     @NotNull(message = "openDate не может быть null")
     @PastOrPresent(message = "openDate не может быть в будущем")
     private LocalDate openDate;
+
+    @NotNull(message = "monthCount не может быть null")
+    @Min(value = 1, message = "monthCount должен быть >= 1")
+    @Max(value = 12, message = "monthCount должен быть <= 12")
+    private Integer monthCount;
 }

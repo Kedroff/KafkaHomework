@@ -14,7 +14,7 @@ import java.time.LocalDate;
 public class ClientDto {
 
     @NotBlank(message = "clientId обязателен")
-    @Pattern(regexp = "^(\\d{2})(\\d{2})(\\d{8})$",    // регулярки это ужас конечно, надеюсь такой формат подойдет? :)
+    @Pattern(regexp = "^(\\d{2})(\\d{2})(\\d{8})$",
             message = "clientId должен иметь формат XXFFNNNNNNNN (12 цифр)")
     private String clientId;
 
