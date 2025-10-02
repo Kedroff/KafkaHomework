@@ -3,6 +3,8 @@ package org.example.clientprocessing.service.impl;
 import dto.clientProcessing.ClientDto;
 import dto.clientProcessing.RegistrationRequest;
 import dto.clientProcessing.UserDto;
+import jakarta.persistence.EntityManager;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.clientprocessing.mapper.ClientMapper;
 import org.example.clientprocessing.mapper.UserMapper;
@@ -13,8 +15,7 @@ import org.example.clientprocessing.repository.ClientRepository;
 import org.example.clientprocessing.repository.UserRepository;
 import org.example.clientprocessing.service.ClientService;
 import org.springframework.stereotype.Service;
-import lombok.RequiredArgsConstructor;
-import jakarta.persistence.EntityManager;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class ClientServiceImpl implements ClientService {
     private final EntityManager entityManager;
 
     @Override
+    @Transactional
     public UserDto registerClient(RegistrationRequest req) {
         log.info("Регистрация клиента: {}", req);
 

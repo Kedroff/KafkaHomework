@@ -1,5 +1,6 @@
 package org.example.clientprocessing.controller;
 
+import annotations.HttpIncomeRequestLog;
 import dto.clientProcessing.ClientDto;
 import dto.clientProcessing.UserDto;
 import dto.clientProcessing.RegistrationRequest;
@@ -20,17 +21,20 @@ public class ClientController {
     private final ClientService clientService;
 
     @PostMapping("/register")
+    @HttpIncomeRequestLog
     public ResponseEntity<UserDto> registerClient(@Valid @RequestBody RegistrationRequest request) {
         UserDto user = clientService.registerClient(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
 
     @GetMapping("/{id}")
+    @HttpIncomeRequestLog
     public ResponseEntity<ClientDto> getClientById(@PathVariable Long id) {
         return ResponseEntity.ok(clientService.getClientById(id));
     }
 
     @GetMapping
+    @HttpIncomeRequestLog
     public ResponseEntity<List<ClientDto>> getAllClients() {
         return ResponseEntity.ok(clientService.getAllClients());
     }
