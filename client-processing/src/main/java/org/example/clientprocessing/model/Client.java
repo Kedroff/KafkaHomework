@@ -3,7 +3,6 @@ package org.example.clientprocessing.model;
 import enums.clientProcessing.DocumentType;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import java.time.LocalDate;
 
@@ -14,7 +13,11 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Client extends AbstractPersistable<Long> {
+public class Client {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "client_id", nullable = false, unique = true, length = 12)
     private String clientId;

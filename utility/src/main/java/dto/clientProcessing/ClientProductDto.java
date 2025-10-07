@@ -30,7 +30,7 @@ public class ClientProductDto {
     @NotNull(message = "status обязателен")
     private ClientProductStatus status;
 
-    @AssertTrue(message = "closeDate должен быть не раньше openDate") // надеюсь это тоже имеет место быть
+    @AssertTrue(message = "closeDate должен быть не раньше openDate")
     private boolean isCloseDateValid() {
         if (closeDate == null) return true;
         if (openDate == null) return true;
