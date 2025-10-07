@@ -43,3 +43,7 @@ t1:
       poll-timeout: 1000
   service:
     name: client-processing
+  metric:
+    limit-ms: 500
+  cache:
+    ttl-ms: 60000
