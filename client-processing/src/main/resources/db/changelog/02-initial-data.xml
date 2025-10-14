@@ -5,6 +5,21 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                             http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.27.xsd">
 
+    <changeSet id="seed-roles" author="you">
+        <insert tableName="roles">
+            <column name="name" value="ROLE_MASTER"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="ROLE_GRAND_EMPLOYEE"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="ROLE_CURRENT_CLIENT"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="ROLE_BLOCKED_CLIENT"/>
+        </insert>
+    </changeSet>
+
     <changeSet id="insert-test-users" author="you">
         <insert tableName="users">
             <column name="login" value="EgorChasovKrutoy"/>

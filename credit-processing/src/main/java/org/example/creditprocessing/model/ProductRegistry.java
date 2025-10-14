@@ -2,7 +2,6 @@ package org.example.creditprocessing.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -14,12 +13,16 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProductRegistry extends AbstractPersistable<Long> {
+public class ProductRegistry {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "client_id", nullable = false)
     private Long clientId;
 
-    @Column(name = "account_id", nullable = false)
+    @Column(name = "account_id")
     private Long accountId;
 
     @Column(name = "product_id", nullable = false)
@@ -30,4 +33,7 @@ public class ProductRegistry extends AbstractPersistable<Long> {
 
     @Column(name = "open_date", nullable = false)
     private LocalDate openDate;
+
+    @Column(name = "month_count", nullable = false)
+    private Integer monthCount;
 }

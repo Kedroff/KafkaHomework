@@ -1,0 +1,5 @@
+CREATE DATABASE clientdb;
+CREATE DATABASE accountdb;
+CREATE DATABASE creditdb;
+
+

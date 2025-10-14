@@ -16,7 +16,7 @@ public class CardDto {
     @Positive(message = "accountId должен быть положительным")
     private Long accountId;
 
-    @NotBlank(message = "cardId не может быть пустым")  // cardId это же номер карты как я понимаю? :)
+    @NotBlank(message = "cardId не может быть пустым")
     @Pattern(
             regexp = "^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$",
             message = "cardId должен быть в формате XXXX-XXXX-XXXX-XXXX"
