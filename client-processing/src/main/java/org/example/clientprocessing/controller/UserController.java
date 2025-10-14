@@ -6,6 +6,7 @@ import org.example.clientprocessing.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import jakarta.validation.Valid;
 import java.util.List;
@@ -23,11 +24,13 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("!hasRole('BLOCKED_CLIENT')")
     public ResponseEntity<UserDto> getUser(@PathVariable Long id) {
         return ResponseEntity.ok(userService.getUserById(id));
     }
 
     @GetMapping
+    @PreAuthorize("!hasRole('BLOCKED_CLIENT')")
     public ResponseEntity<List<UserDto>> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
     }

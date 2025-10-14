@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.clientprocessing.service.ClientService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
@@ -28,12 +29,14 @@ public class ClientController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("!hasRole('BLOCKED_CLIENT')")
     @HttpIncomeRequestLog
     public ResponseEntity<ClientDto> getClientById(@PathVariable Long id) {
         return ResponseEntity.ok(clientService.getClientById(id));
     }
 
     @GetMapping
+    @PreAuthorize("!hasRole('BLOCKED_CLIENT')")
     @HttpIncomeRequestLog
     public ResponseEntity<List<ClientDto>> getAllClients() {
         return ResponseEntity.ok(clientService.getAllClients());

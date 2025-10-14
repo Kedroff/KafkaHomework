@@ -12,6 +12,7 @@ import org.example.clientprocessing.model.Client;
 import org.example.clientprocessing.model.User;
 import org.example.clientprocessing.repository.BlacklistRegistryRepository;
 import org.example.clientprocessing.repository.ClientRepository;
+import org.example.clientprocessing.repository.RoleRepository;
 import org.example.clientprocessing.repository.UserRepository;
 import org.example.clientprocessing.service.ClientService;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,7 @@ public class ClientServiceImpl implements ClientService {
 
     private final UserRepository userRepository;
     private final ClientRepository clientRepository;
+    private final RoleRepository roleRepository;
     private final BlacklistRegistryRepository blacklistRepository;
     private final UserMapper userMapper;
     private final ClientMapper clientMapper;
@@ -46,6 +48,14 @@ public class ClientServiceImpl implements ClientService {
                 .email(req.getEmail())
                 .build();
         user = userRepository.save(user);
+
+        var currentRole = roleRepository.findByName(enums.security.RoleName.ROLE_CURRENT_CLIENT).orElse(null);
+        if (currentRole != null) {
+            java.util.HashSet<org.example.clientprocessing.model.Role> set = new java.util.HashSet<>();
+            set.add(currentRole);
+            user.setRoles(set);
+            userRepository.save(user);
+        }
 
         long seq = ((Number) entityManager.createNativeQuery("SELECT nextval('client_number_seq')").getSingleResult()).longValue();
         String clientId = String.format("7701%08d", seq);

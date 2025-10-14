@@ -1,7 +1,6 @@
 package org.example.clientprocessing.cache;
 
 public class CacheEntry {
-
     private final Object value;
     private final long expireAtMs;
 

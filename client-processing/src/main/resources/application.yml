@@ -47,3 +47,6 @@ t1:
     limit-ms: 500
   cache:
     ttl-ms: 60000
+security:
+  token: dGhpcy1pcy1hLWxvbmc2NGJhc2Utc2VjcmV0LWF0LWxlYXN0LTI1Ni1iaXRzLWxvbmctZm9yLWRlbW8=
+  expiration: 86400000

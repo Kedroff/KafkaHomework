@@ -1,7 +1,6 @@
 package org.example.clientprocessing.aop;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.clientprocessing.cache.CacheStore;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -17,7 +16,7 @@ import java.util.Arrays;
 @RequiredArgsConstructor
 public class CachedAspect {
 
-    private final CacheStore cacheStore;
+    private final org.example.clientprocessing.cache.CacheStore cacheStore;
 
     @Value("${t1.cache.ttl-ms:60000}")
     private long ttlMs;
