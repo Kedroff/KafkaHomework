@@ -4,7 +4,6 @@ import enums.accountProcessing.TransactionStatus;
 import enums.accountProcessing.TransactionType;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -16,7 +15,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Transaction extends AbstractPersistable<Long> {
+public class Transaction {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "account_id", nullable = false)
     private Long accountId;
@@ -24,6 +27,7 @@ public class Transaction extends AbstractPersistable<Long> {
     @Column(name = "card_id")
     private Long cardId;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false)
     private TransactionType type;
 

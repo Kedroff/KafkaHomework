@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/creditdb
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/creditdb}
     username: postgres
     password: password
   liquibase:
@@ -8,3 +8,27 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
+
+t1:
+  kafka:
+    bootstrap:
+      server: ${KAFKA_SERVER:localhost:9092}
+    consumer:
+      group-id: credit-processing
+      max.poll.records: 10
+      session-timeout: 10000
+      heartbeat.interval: 3000
+    topic:
+      client_credit_products: client_credit_products
+  credit:
+    limit: 1500000
+    default-principal: 500000
+    default-annual-rate: 22
+    default-months: 60
+
+integration:
+  ms1:
+    base-url: ${MS1_BASE_URL:http://localhost:8080}
+security:
+  token: dGhpcy1pcy1hLWxvbmc2NGJhc2Utc2VjcmV0LWF0LWxlYXN0LTI1Ni1iaXRzLWxvbmctZm9yLWRlbW8=
+  expiration: 86400000

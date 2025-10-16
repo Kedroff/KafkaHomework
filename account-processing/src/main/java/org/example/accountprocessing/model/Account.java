@@ -3,7 +3,6 @@ package org.example.accountprocessing.model;
 import enums.accountProcessing.AccountStatus;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import java.math.BigDecimal;
 
@@ -14,7 +13,11 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Account extends AbstractPersistable<Long> {
+public class Account {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "client_id", nullable = false)
     private Long clientId;

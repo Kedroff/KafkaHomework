@@ -7,7 +7,8 @@ import java.util.Arrays;
 public enum PaymentType {
     DEPOSIT("DEPOSIT"),
     WITHDRAWAL("WITHDRAWAL"),
-    TRANSFER("TRANSFER");
+    TRANSFER("TRANSFER"),
+    MONTHLY("MONTHLY");
 
     private final String value;
 
